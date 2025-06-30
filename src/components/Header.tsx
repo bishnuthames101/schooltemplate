@@ -53,23 +53,23 @@ const Header: React.FC = () => {
         : '-translate-y-full top-0'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-3 sm:py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2" onClick={handleLinkClick}>
-            <GraduationCap className="h-8 w-8 text-blue-600" />
+            <GraduationCap className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" />
             <div>
-              <h1 className="text-xl font-bold text-gray-900">Excellence Academy</h1>
-              <p className="text-xs text-gray-600">Nurturing Future Leaders</p>
+              <h1 className="text-lg sm:text-xl font-bold text-gray-900">Excellence Academy</h1>
+              <p className="text-xs text-gray-600 hidden sm:block">Nurturing Future Leaders</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex space-x-8">
+          <nav className="hidden lg:flex space-x-6 xl:space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`text-sm font-medium transition-colors duration-200 ${
+                className={`text-sm font-medium transition-colors duration-200 px-2 py-1 ${
                   isActive(item.href)
                     ? 'text-blue-600 border-b-2 border-blue-600'
                     : 'text-gray-700 hover:text-blue-600'
@@ -83,25 +83,30 @@ const Header: React.FC = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 focus:outline-none"
+            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-200">
-            <nav className="flex flex-col space-y-4">
+        <div className={`lg:hidden transition-all duration-300 ease-in-out ${
+          isMenuOpen 
+            ? 'max-h-96 opacity-100 pb-4' 
+            : 'max-h-0 opacity-0 overflow-hidden'
+        }`}>
+          <div className="border-t border-gray-200 pt-4">
+            <nav className="flex flex-col space-y-3">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
                   onClick={handleLinkClick}
-                  className={`text-base font-medium transition-colors duration-200 ${
+                  className={`text-base font-medium transition-colors duration-200 px-3 py-2 rounded-md ${
                     isActive(item.href)
-                      ? 'text-blue-600'
-                      : 'text-gray-700 hover:text-blue-600'
+                      ? 'text-blue-600 bg-blue-50'
+                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
                   }`}
                 >
                   {item.name}
@@ -109,7 +114,7 @@ const Header: React.FC = () => {
               ))}
             </nav>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );
