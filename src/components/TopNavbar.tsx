@@ -28,27 +28,29 @@ const TopNavbar: React.FC = () => {
   return (
     <div className={`bg-blue-900 text-white text-sm transition-transform duration-300 ${
       isVisible ? 'translate-y-0' : '-translate-y-full'
-    } fixed top-0 left-0 right-0 z-50`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row justify-between items-center py-2 space-y-2 sm:space-y-0">
+    } fixed top-0 left-0 right-0 z-50`} style={{ height: '40px' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="flex flex-col sm:flex-row justify-between items-center h-full py-1">
           {/* Contact Information */}
-          <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-6">
+          <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-6 text-xs sm:text-sm">
             <div className="flex items-center space-x-2">
-              <Phone className="h-4 w-4" />
-              <span>+1 (555) 123-4567</span>
+              <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">+1 (555) 123-4567</span>
+              <span className="sm:hidden">Call</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Mail className="h-4 w-4" />
-              <span>info@excellenceacademy.edu</span>
+              <Mail className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">info@excellenceacademy.edu</span>
+              <span className="sm:hidden">Email</span>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="hidden md:flex items-center space-x-2">
               <Clock className="h-4 w-4" />
               <span>Mon-Fri: 8:00 AM - 5:00 PM</span>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="flex items-center space-x-4">
+          <div className="hidden sm:flex items-center space-x-4 text-xs">
             <a href="tel:+15551234567" className="hover:text-blue-200 transition-colors duration-200">
               Call Now
             </a>
