@@ -56,7 +56,7 @@ const Header: React.FC = () => {
   }, [isMenuOpen]);
 
   return (
-    <header className={`bg-white shadow-lg transition-all duration-300 fixed left-0 right-0 z-30 ${
+    <header className={`bg-white shadow-lg transition-all duration-300 fixed left-0 right-0 z-60 ${
       isVisible 
         ? 'translate-y-0 top-16 sm:top-12' 
         : '-translate-y-full top-0'
