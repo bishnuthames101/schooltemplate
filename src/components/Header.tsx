@@ -41,15 +41,24 @@ const Header: React.FC = () => {
       setLastScrollY(currentScrollY);
     };
 
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
+   // ✅ Effect for locking body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isMenuOpen]);
 
   return (
     <header className={`bg-white shadow-lg transition-all duration-300 fixed left-0 right-0 z-30 ${
       isVisible 
-        ? 'translate-y-0 top-12 sm:top-10' 
+        ? 'translate-y-0 top-16 sm:top-12' 
         : '-translate-y-full top-0'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
