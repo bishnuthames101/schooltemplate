@@ -47,7 +47,7 @@ const Header: React.FC = () => {
   }, [lastScrollY]);
 
   return (
-    <header className={`bg-white shadow-lg transition-all duration-300 fixed left-0 right-0 z-40 ${
+    <header className={`bg-white shadow-lg transition-all duration-300 fixed left-0 right-0 z-30 ${
       isVisible 
         ? 'translate-y-0 top-12 sm:top-10' 
         : '-translate-y-full top-0'
@@ -56,7 +56,7 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center py-3 sm:py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2" onClick={handleLinkClick}>
-            <GraduationCap className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" />
+            <GraduationCap className="h-7 w-7 sm:h-8 sm:w-8 text-blue-600" />
             <div>
               <h1 className="text-lg sm:text-xl font-bold text-gray-900">Excellence Academy</h1>
               <p className="text-xs text-gray-600 hidden sm:block">Nurturing Future Leaders</p>
@@ -83,7 +83,7 @@ const Header: React.FC = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
+            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 z-50"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
