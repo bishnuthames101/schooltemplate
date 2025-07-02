@@ -41,25 +41,24 @@ const Header: React.FC = () => {
       setLastScrollY(currentScrollY);
     };
 
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
-   // ✅ Effect for locking body scroll when menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  }, [isMenuOpen]);
+
+  // Remove the scroll prevention effect
+  // useEffect(() => {
+  //   if (isMenuOpen) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = '';
+  //   }
+  // }, [isMenuOpen]);
 
   return (
-    <div className="relative z-50">
-    <header className={`bg-white shadow-lg transition-all duration-300 fixed left-0 right-0 z-60 ${
+    <header className={`bg-white shadow-lg transition-all duration-300 fixed left-0 right-0 z-30 ${
       isVisible 
-        ? 'translate-y-0 top-16 sm:top-12' 
+        ? 'translate-y-0 top-28 sm:top-16 lg:top-12' 
         : '-translate-y-full top-0'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,41 +92,38 @@ const Header: React.FC = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 z-50"
+            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 z-50 relative"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        <div className={`lg:hidden transition-all duration-300 ease-in-out ${
-          isMenuOpen 
-            ? 'max-h-96 opacity-100 pb-4' 
-            : 'max-h-0 opacity-0 overflow-hidden'
-        }`}>
-          <div className="border-t border-gray-200 pt-4">
-            <nav className="flex flex-col space-y-3">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  onClick={handleLinkClick}
-                  className={`text-base font-medium transition-colors duration-200 px-3 py-2 rounded-md ${
-                    isActive(item.href)
-                      ? 'text-blue-600 bg-blue-50'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </nav>
+        {/* Mobile Navigation - Fixed positioning and proper container */}
+        {isMenuOpen && (
+          <div className="lg:hidden fixed inset-x-0 top-full bg-white shadow-lg border-t border-gray-200 z-40 max-h-screen overflow-y-auto">
+            <div className="px-4 py-4">
+              <nav className="flex flex-col space-y-3">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={handleLinkClick}
+                    className={`text-base font-medium transition-colors duration-200 px-3 py-2 rounded-md ${
+                      isActive(item.href)
+                        ? 'text-blue-600 bg-blue-50'
+                        : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </nav>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </header>
-    </div>
   );
 };
 
