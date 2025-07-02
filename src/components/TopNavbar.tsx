@@ -35,17 +35,11 @@ const TopNavbar: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-6">
             <div className="flex items-center space-x-2">
               <Phone className="h-4 w-4" />
-              <span>+1 (555) 123-4567 (
-               <a href="tel:+15551234567" className="hover:text-blue-200 transition-colors duration-200">
-              Call Now
-            </a>
-                )</span>
+              <span>+977 (01) 5202000 </span>
             </div>
             <div className="flex items-center space-x-2">
               <Mail className="h-4 w-4" />
-              <span>info@excellenceacademy.edu(  <a href="mailto:info@excellenceacademy.edu" className="hover:text-blue-200 transition-colors duration-200">
-              Email Us
-            </a> )</span>
+              <span>info@excellenceacademy.edu  </span>
             </div>
             <div className="flex items-center space-x-2">
               <Clock className="h-4 w-4" />
@@ -55,8 +49,13 @@ const TopNavbar: React.FC = () => {
 
           {/* Quick Links */}
           <div className="flex items-center space-x-4">
+          <a href="tel:+977015202000" className="hover:text-blue-200 transition-colors duration-200">
+              Call Now
+            </a>
            
-           
+          <a href="mailto:info@excellenceacademy.edu" className="hover:text-blue-200 transition-colors duration-200">
+              Email Us
+            </a> 
           </div>
         </div>
       </div>
